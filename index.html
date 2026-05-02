@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolachas Digital | Loja Oficial</title>
+    <style>
+        :root { --cor-principal: #d2691e; --cor-secundaria: #8b4513; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #fffaf0; color: #333; }
+        header { background: var(--cor-principal); color: white; padding: 2rem; text-align: center; }
+        .vitrine { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 40px; }
+        .cookie-card { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center; border: 1px solid #eee; }
+        .cookie-card img { width: 100%; border-radius: 10px; }
+        .btn-comprar { background: var(--cor-principal); color: white; border: none; padding: 12px 25px; border-radius: 25px; cursor: pointer; font-weight: bold; margin-top: 10px; transition: 0.3s; }
+        .btn-comprar:hover { background: var(--cor-secundaria); }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🍪 Bolachas Digital</h1>
+    <p>O sabor do digital com a crocância que você ama</p>
+</header>
+
+<main class="vitrine" id="lista-produtos">
+    <div class="cookie-card">
+        <img src="https://via.placeholder.com/200" alt="Bolacha Tradicional">
+        <h3>Cookie de Chocolate</h3>
+        <p>R$ 5,00</p>
+        <button class="btn-comprar" onclick="fazerPedido('Cookie de Chocolate')">Encomendar</button>
+    </div>
+</main>
+
+<script>
+    function fazerPedido(produto) {
+        alert("Pedido de " + produto + " recebido! Vamos processar no banco de dados.");
+        // Próximo passo: integrar com o Supabase
+    }
+</script>
+
+</body>
+</html>
