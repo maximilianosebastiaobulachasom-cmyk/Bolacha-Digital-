@@ -1,49 +1,81 @@
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bolachas Digital</title>
+    <title>Bolachas Digital | Inovação & Tecnologia</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
-        :root { --cor: #d2691e; }
-        body { font-family: sans-serif; background: #fffaf0; margin: 0; text-align: center; }
-        header { background: var(--cor); color: white; padding: 20px; }
-        .vitrine { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; }
-        .card { background: white; border-radius: 10px; padding: 15px; margin: 10px; width: 200px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        button { background: var(--cor); color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; width: 100%; }
+        :root { --primary: #0066ff; --gold: #ffcc00; --bg: #050a14; --card: #111827; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: var(--bg); color: #e5e7eb; }
+        
+        /* Cabeçalho Comercial */
+        header { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1350&q=80'); background-size: cover; padding: 100px 20px; text-align: center; border-bottom: 5px solid var(--primary); }
+        .slogan { color: var(--gold); font-weight: bold; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 3px; }
+        h1 { font-size: 3.5rem; margin: 10px 0; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 50px 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
+        .card { background: var(--card); border-radius: 20px; padding: 30px; border: 1px solid #1f2937; transition: 0.3s; position: relative; }
+        .card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        
+        .categoria { color: var(--primary); font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
+        .preco { font-size: 1.8rem; color: #fff; margin: 20px 0; font-weight: 800; }
+        .nota { font-size: 0.9rem; color: #9ca3af; margin-bottom: 20px; background: #1f2937; padding: 10px; border-radius: 8px; }
+
+        .btn { background: var(--primary); color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer; width: 100%; font-weight: bold; font-size: 1rem; }
+        
+        /* Modal de Recibo */
+        #modalRecibo { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; }
+        .recibo-box { background: white; color: #333; padding: 40px; border-radius: 10px; width: 90%; max-width: 500px; text-align: left; }
+        .recibo-header { border-bottom: 2px solid #eee; margin-bottom: 20px; padding-bottom: 10px; }
     </style>
 </head>
 <body>
-    <header><h1>🍪 Bolachas Digital</h1></header>
-    <div id="produtos" class="vitrine">Carregando delícias...</div>
 
-    <script>
-        // SUBSTITUA PELOS SEUS DADOS DO SUPABASE
-        const SUPABASE_URL = 'SUA_URL_AQUI';
-        const SUPABASE_KEY = 'sb_publishable_nhIfpiCjuFFKT9-2JJBipw_rUNEJDzq';
-        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    <header>
+        <p class="slogan">Uma mordida virtual para o sucesso da sua carreira</p>
+        <h1>Bolachas Digital</h1>
+        <p>Inovação | Audiovisual | Tecnologia | Educação</p>
+    </header>
 
-        async function carregarProdutos() {
-            const { data, error } = await supabase.from('produtos').select('*');
-            const div = document.getElementById('produtos');
-            if (data) {
-                div.innerHTML = data.map(p => `
-                    <div class="card">
-                        <h3>${p.nome}</h3>
-                        <p>R$ ${p.preco}</p>
-                        <button onclick="comprar('${p.nome}')">Encomendar</button>
-                    </div>
-                `).join('');
-            } else { div.innerHTML = "Adicione produtos no banco de dados!"; }
-        }
+    <div class="container">
+        <h2 style="text-align:center; margin-bottom:40px; font-size: 2rem; color: var(--gold);">Catálogo de Serviços Especializados</h2>
+        
+        <div class="grid">
+            <div class="card">
+                <span class="categoria">Académico</span>
+                <h3>Trabalhos Escolares</h3>
+                <p>Individual, em Grupo e Monografias de alta qualidade.</p>
+                <div class="preco">A partir de 4.000 Kz</div>
+                <div class="nota">Monografia: 20.000 Kz | Projetos: 67.000 Kz</div>
+                <button class="btn" onclick="gerarRecibo('Trabalho Académico', 4000)">Agendar & Gerar Recibo</button>
+            </div>
 
-        function comprar(nome) {
-            const msg = encodeURIComponent(`Olá! Quero encomendar: ${nome}`);
-            window.open(`https://wa.me/955843093?text=${msg}`);
-        }
-        carregarProdutos();
-    </script>
-</body>
-</html>
+            <div class="card">
+                <span class="categoria">Vídeo & Música</span>
+                <h3>Vídeo Clipe Musical</h3>
+                <p>Gravação de alta performance para artistas.</p>
+                <div class="preco">38.000 Kz <span>(Mini)</span></div>
+                <div class="nota">Pacote VIP: 125.000 Kz | Premium: 380.000 Kz</div>
+                <button class="btn" onclick="gerarRecibo('Vídeo Clipe', 38000)">Agendar & Gerar Recibo</button>
+            </div>
 
+            <div class="card">
+                <span class="categoria">Eventos de Luxo</span>
+                <h3>Casamento Completo</h3>
+                <p>Fotografia, Filmagens, Edição e Impressão completa.</p>
+                <div class="preco">1.500.000 Kz</div>
+                <div class="nota">Pagamento: 50% Agendamento | 50% Entrega</div>
+                <button class="btn" onclick="gerarRecibo('Casamento Completo', 1500000)">Agendar & Gerar Recibo</button>
+            </div>
+
+            <div class="card">
+                <span class="categoria">Engenharia de Sistemas</span>
+                <h3>Instalação & Redes</h3>
+                <p>Projetos de grande escala para empresas novas.</p>
+                <div class="preco">7M - 10M
