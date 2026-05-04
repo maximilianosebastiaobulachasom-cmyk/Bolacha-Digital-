@@ -1,104 +1,138 @@
-<!DOCTYPE html>
+                <!DOCTYPE html>
 <html lang="pt-pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bolachas Digital | Engenharia de Sistemas & Audiovisual</title>
+    <title>Bulacha Digital | Engenharia de Sistemas & Elite TI</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        :root { --it-blue: #00d2ff; --av-gold: #ffca28; --bg: #050505; --card-bg: #111; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background: var(--bg); color: #eee; line-height: 1.6; }
+        /* Reset e Cores Premium */
+        :root { --it-blue: #00d2ff; --av-gold: #ffca28; --bg: #030303; --card-bg: #101010; --text: #eee; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', system-ui, sans-serif; }
+        body { background: var(--bg); color: var(--text); line-height: 1.6; }
         
-        header { padding: 4rem 1rem; text-align: center; border-bottom: 2px solid #222; background: linear-gradient(to bottom, #111, #050505); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-        
-        h2.section-title { font-size: 1.8rem; margin: 40px 0 20px; border-left: 5px solid var(--it-blue); padding-left: 15px; color: #fff; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-        
-        .card { background: var(--card-bg); border-radius: 12px; padding: 25px; border: 1px solid #222; transition: 0.3s; }
-        .card:hover { border-color: var(--it-blue); transform: scale(1.02); }
-        
-        .price-tag { font-size: 1.5rem; color: var(--av-gold); font-weight: bold; margin: 15px 0; }
-        .service-list { list-style: none; margin-bottom: 20px; font-size: 0.95rem; color: #aaa; }
-        .service-list li::before { content: "⚡ "; color: var(--it-blue); }
+        /* Banner de Entrada Profissional */
+        .hero { 
+            background-image: url('https://i.imgur.com/8Fk7K5S.png'); /* IMAGEM GERADA ACIMA */
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 2px solid #222;
+            position: relative;
+        }
+        .hero::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1; }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; padding: 0 20px; }
+        .hero h1 { font-size: 3.5rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; }
+        .hero h1 span { color: var(--it-blue); }
+        .hero p { font-size: 1.2rem; color: #aaa; margin-bottom: 30px; font-weight: 300; }
 
-        button { width: 100%; padding: 12px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; }
+        /* Container e Seções */
+        .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+        h2.section-title { font-size: 2rem; margin-bottom: 40px; text-align: center; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
+        
+        /* Grade e Cards */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .card { background: var(--card-bg); border-radius: 12px; padding: 35px; border: 1px solid #222; transition: 0.3s; position: relative; display: flex; flex-direction: column; }
+        .card:hover { border-color: var(--it-blue); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 210, 255, 0.1); }
+        
+        /* Ícones Profissionais Lucide */
+        .card-icon { color: var(--it-blue); margin-bottom: 20px; }
+        
+        .card h3 { font-size: 1.6rem; color: #fff; margin-bottom: 15px; font-weight: 700; }
+        .card p.desc { color: #aaa; margin-bottom: 20px; flex-grow: 1; font-size: 0.95rem; }
+        
+        .price-tag { font-size: 1.6rem; color: var(--av-gold); font-weight: 800; margin-bottom: 25px; border-top: 1px solid #222; padding-top: 15px; }
+        .price-tag span { font-size: 1rem; color: #666; font-weight: 400; }
+
+        /* Botões Premium */
+        .btn-box { display: flex; gap: 10px; flex-direction: column; }
+        button { width: 100%; padding: 15px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; transition: 0.3s; }
         .btn-zap { background: #25d366; color: #fff; }
+        .btn-zap:hover { background: #1ebd5a; }
         .btn-pay { background: #fff; color: #000; }
+        .btn-pay:hover { background: #ddd; }
 
         /* Modal de Pagamento */
-        #payment-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #1a1a1a; padding: 30px; border-radius: 15px; box-shadow: 0 0 50px rgba(0,0,0,0.8); z-index: 1000; width: 90%; max-width: 400px; text-align: center; }
-        #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 999; }
+        #payment-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #111; padding: 40px; border-radius: 15px; border: 1px solid #222; box-shadow: 0 0 60px rgba(0,0,0,0.9); z-index: 1000; width: 90%; max-width: 450px; text-align: center; }
+        #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 999; }
+        .iban-box { background: #000; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 1.1rem; color: var(--it-blue); margin: 20px 0; border: 1px solid #222; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1 style="font-size: 2.5rem;">BOLACHAS <span style="color:var(--it-blue)">DIGITAL</span></h1>
-        <p>Sistemas Operativos | Redes LAN-WAN | Audiovisual | Trabalhos Académicos</p>
-    </header>
+    <div class="hero">
+        <div class="hero-content">
+            <h1><span>BULACHA</span> DIGITAL</h1>
+            <p>Hub de Tecnologia Luanda: Soluções de Elite em Engenharia de Sistemas, Redes LAN/WAN, Segurança Cibernética e Desenvolvimento Profissional de Software.</p>
+        </div>
+    </div>
 
     <div class="container">
         
-        <h2 class="section-title">💻 Engenharia de Sistemas & Redes</h2>
+        <h2 class="section-title">Sistemas Operativos & Infraestrutura</h2>
         <div class="grid">
             <div class="card">
-                <h3>Sistemas Operativos (Full)</h3>
-                <p>Instalação e reparação de Windows, Linux (todas distros), macOS e Servidores.</p>
-                <div class="price-tag">A partir de 25.000 Kz</div>
-                <button class="btn-zap" onclick="zap('Instalação de Sistemas')">Pedir via WhatsApp</button>
-                <button class="btn-pay" onclick="abrirPagamento('Instalação de Sistemas', 25000)">Pagar Agora</button>
+                <i data-lucide="monitor" class="card-icon" size="40"></i>
+                <h3>Sistemas Multiforma</h3>
+                <p class="desc">Instalação, administração avançada e reparação crítica de todos os SOs: Linux (Servidores/Desktop), Windows Server, macOS.</p>
+                <div class="price-tag">A partir de 25.000 <span>Kz</span></div>
+                <div class="btn-box">
+                    <button class="btn-zap" onclick="zap('Instalação de Sistemas Operativos Multiforma')">Pedir via WhatsApp</button>
+                    <button class="btn-pay" onclick="abrirPagamento('Sistemas Operativos (Multiforma)', 25000)">Pagar Agora</button>
+                </div>
             </div>
 
             <div class="card">
-                <h3>Redes de Computadores</h3>
-                <ul class="service-list">
-                    <li>Rede Local (LAN): Base</li>
-                    <li>Rede Metropolitana (MAN): +120.000 Kz</li>
-                    <li>Rede Alargada (WAN): Sob Consulta</li>
-                </ul>
-                <div class="price-tag">Base: 80.000 Kz</div>
-                <button class="btn-zap" onclick="zap('Infraestrutura de Redes')">Consultar Abrangência</button>
+                <i data-lucide="network" class="card-icon" size="40"></i>
+                <h3>Engenharia de Redes</h3>
+                <p class="desc">Desenvolvimento e administração consoante abrangência. Implementação segura de Redes Locais (LAN), Metropolitanas (MAN) e Alargadas (WAN).</p>
+                <div class="price-tag">Base (LAN): 80.000 <span>Kz</span></div>
+                <div class="btn-box">
+                    <button class="btn-zap" onclick="zap('Infraestrutura de Redes (LAN/MAN/WAN)')">Consultar Abrangência</button>
+                </div>
             </div>
             
             <div class="card">
-                <h3>Académico & Programação</h3>
-                <p>Trabalhos escolares de todos os tipos e desenvolvimento de software (Python, JS, C#).</p>
-                <div class="price-tag">Preço Variável</div>
-                <button class="btn-zap" onclick="zap('Trabalhos Escolares/Dev')">Solicitar Trabalho</button>
+                <i data-lucide="code" class="card-icon" size="40"></i>
+                <h3>Dev & Académico</h3>
+                <p class="desc">Desenvolvimento sob medida (Python, JS, C#) e trabalhos académicos informáticos especializados. O preço varia conforme a complexidade.</p>
+                <div class="price-tag">Orçamento Variável</div>
+                <div class="btn-box">
+                    <button class="btn-zap" onclick="zap('Solicitar Desenvolvimento/Trabalho Académico')">Solicitar Agora</button>
+                </div>
             </div>
         </div>
 
-        <h2 class="section-title" style="border-color: var(--av-gold);">📸 Audiovisual & Eventos</h2>
-        <div class="grid">
-            <div class="card" style="border-color: #333;">
-                <h3>Produção de Imagem</h3>
-                <p>Casamentos, Batismos, Graduações e Eventos corporativos.</p>
-                <div class="price-tag">85.000 - 1.000.000 Kz</div>
-                <button class="btn-zap" onclick="zap('Serviço Audiovisual')">Reservar Data</button>
-            </div>
-        </div>
     </div>
 
     <div id="overlay"></div>
     <div id="payment-modal">
-        <h3>Transferência Bancária</h3>
-        <p style="margin: 15px 0; font-size: 0.9rem;">IBAN: 0055 0000 32270935101 68 (Substitua no código)</p>
-        <p>Envie o comprovativo para o WhatsApp após a transferência.</p>
-        <hr style="margin: 15px 0; opacity: 0.2;">
-        <button onclick="gerarPDF()" style="background: var(--it-blue);">Gerar Recibo PDF</button>
-        <button onclick="fecharModal()" style="background: transparent; color: #666;">Fechar</button>
+        <i data-lucide="landmark" class="card-icon" size="50" style="color:var(--av-gold)"></i>
+        <h3 style="color:#fff; margin-bottom: 10px;">Transferência Bancária</h3>
+        <p style="font-size: 0.9rem; color: #888;">Efetue o pagamento e envie o comprovativo para o WhatsApp para validação.</p>
+        <div class="iban-box">AO06.XXXX.XXXX.XXXX.XXXX.X (EDITAR IBAN AQUI)</div>
+        <hr style="margin: 20px 0; border-color: #222;">
+        <button onclick="gerarPDF()" style="background: var(--it-blue); margin-bottom: 10px;">Gerar Recibo PDF</button>
+        <button onclick="fecharModal()" style="background: transparent; color: #666; padding: 10px;">Fechar</button>
     </div>
 
     <script>
+        // Inicializar ícones Lucide
+        lucide.createIcons();
+
         let servicoAtual = "";
         let precoAtual = 0;
 
         function zap(msg) {
             const numero = "244955843093";
-            window.open(`https://wa.me/${numero}?text=Olá Bolachas Digital! Gostaria de: ${msg}`, '_blank');
+            window.open(`https://wa.me/${numero}?text=Olá Bulacha Digital! Gostaria de detalhes sobre: ${msg}`, '_blank');
         }
 
         function abrirPagamento(servico, preco) {
@@ -117,18 +151,45 @@
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             
+            // Header
+            doc.setFillColor(30, 41, 59); // var(--card-bg) aproximado
+            doc.rect(0, 0, 210, 40, 'F');
+            doc.setTextColor(255, 255, 255);
             doc.setFontSize(22);
-            doc.text("BOLACHAS DIGITAL - RECIBO", 20, 30);
-            doc.setFontSize(12);
-            doc.text(`Serviço: ${servicoAtual}`, 20, 50);
-            doc.text(`Valor: ${precoAtual} Kz`, 20, 60);
-            doc.text(`Data: ${new Date().toLocaleDateString()}`, 20, 70);
-            doc.text("Estado: Pendente (Aguardando Comprovativo)", 20, 80);
-            doc.text("--------------------------------------------------", 20, 90);
-            doc.text("IBAN PARA PAGAMENTO: 0000.0000.0000.0000 (EDITAR)", 20, 100);
+            doc.setFont("helvetica", "bold");
+            doc.text("BULACHA DIGITAL", 20, 28);
             
-            doc.save(`Recibo_BolachasDigital_${Date.now()}.pdf`);
-            alert("Recibo gerado! Envie-o junto com a foto da transferência.");
+            // Conteúdo
+            doc.setTextColor(0, 0, 0);
+            doc.setFontSize(14);
+            doc.text("RECIBO DE SOLICITAÇÃO", 20, 55);
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(11);
+            doc.text(`Data: ${new Date().toLocaleDateString()}`, 20, 65);
+            doc.text(`ID do Pedido: ${Date.now()}`, 20, 72);
+            
+            doc.setFontSize(12);
+            doc.text("--------------------------------------------------", 20, 80);
+            doc.setFont("helvetica", "bold");
+            doc.text("DETALHES DO SERVIÇO", 20, 90);
+            doc.setFont("helvetica", "normal");
+            doc.text(`Serviço: ${servicoAtual}`, 20, 100);
+            doc.text(`Valor Inicial Base: ${precoAtual.toLocaleString('pt-AO')} Kz`, 20, 108);
+            
+            doc.setFontSize(12);
+            doc.text("--------------------------------------------------", 20, 118);
+            doc.setFont("helvetica", "bold");
+            doc.text("INFORMAÇÕES DE PAGAMENTO", 20, 128);
+            doc.setFont("helvetica", "normal");
+            doc.text("IBAN Bulacha Digital: AO06.XXXX... (EDITAR NO CÓDIGO)", 20, 138);
+            doc.text("Estado: Aguardando Comprovativo", 20, 145);
+            
+            doc.setFontSize(10);
+            doc.setTextColor(100, 100, 100);
+            doc.text("Luanda, Angola - Engenharia de Sistemas de Elite", 20, 160);
+            
+            doc.save(`Recibo_BulachaDigital_${Date.now()}.pdf`);
+            alert("Recibo gerado! Envie-o pelo WhatsApp junto com a foto da transferência bancária.");
         }
     </script>
 </body>
