@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bulacha Digital | Engenharia de Elite</title>
+    <title>Bulacha Digital | Engenharia & Sistemas</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -11,163 +11,185 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { background: var(--dark); color: #fff; overflow-x: hidden; }
 
+        /* BANNER AJUSTADO */
         .hero {
-            height: 85vh;
+            height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('1777913563081.png');
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.7)), 
+                        url('1777913563081.png');
             background-size: cover;
-            background-position: center;
+            background-position: center top; /* Foco no topo para garantir visibilidade do servidor */
+            background-repeat: no-repeat;
             text-align: center;
-            border-bottom: 3px solid var(--blue);
+            border-bottom: 4px solid var(--blue);
             padding: 0 20px;
         }
 
         .hero h1 { 
-            font-size: clamp(2.5rem, 8vw, 4.5rem); 
-            letter-spacing: 5px; 
+            font-size: clamp(2.5rem, 9vw, 5rem); 
+            letter-spacing: 6px; 
             text-transform: uppercase;
-            text-shadow: 0 0 20px var(--blue);
+            text-shadow: 0 0 30px var(--blue);
             animation: glow 2s infinite alternate;
         }
 
-        @keyframes glow { from { opacity: 0.8; } to { opacity: 1; text-shadow: 0 0 40px var(--blue); } }
+        @keyframes glow { from { opacity: 0.8; } to { opacity: 1; text-shadow: 0 0 50px var(--blue); } }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
         
         .card { 
             background: var(--card); 
-            padding: 40px; 
-            border-radius: 15px; 
+            padding: 45px; 
+            border-radius: 20px; 
             border: 1px solid #222; 
-            transition: 0.4s ease;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             flex-direction: column;
         }
-        .card:hover { border-color: var(--blue); transform: translateY(-10px); }
+        .card:hover { border-color: var(--blue); transform: translateY(-15px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
         
-        .icon { color: var(--blue); margin-bottom: 20px; }
-        .card h3 { font-size: 1.6rem; margin-bottom: 15px; }
-        .card p { color: #aaa; font-size: 0.95rem; flex-grow: 1; margin-bottom: 20px; }
+        .icon { color: var(--blue); margin-bottom: 25px; }
+        .card h3 { font-size: 1.7rem; margin-bottom: 15px; letter-spacing: 1px; }
+        .card p { color: #bbb; font-size: 1rem; flex-grow: 1; margin-bottom: 25px; line-height: 1.5; }
         
-        .price { font-size: 1.5rem; color: var(--gold); margin-bottom: 25px; font-weight: 800; border-top: 1px solid #222; padding-top: 15px; }
+        .price { font-size: 1.6rem; color: var(--gold); margin-bottom: 30px; font-weight: 900; border-top: 1px solid #222; padding-top: 20px; }
         
-        .btn-box { display: flex; flex-direction: column; gap: 10px; }
+        /* BOTÕES PREMIUM */
+        .btn-box { display: flex; flex-direction: column; gap: 12px; }
         button { 
-            width: 100%; padding: 15px; border-radius: 8px; border: none; 
-            font-weight: bold; cursor: pointer; text-transform: uppercase;
+            width: 100%; padding: 18px; border-radius: 10px; border: none; 
+            font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;
+            transition: 0.3s;
         }
         .btn-zap { background: #25d366; color: white; }
-        .btn-pdf { background: #fff; color: #000; }
-
-        .academic-highlight {
-            background: #111;
-            padding: 30px;
-            border-radius: 15px;
-            margin-top: 50px;
-            text-align: center;
-            border-left: 6px solid var(--gold);
-        }
+        .btn-zap:hover { background: #1da851; transform: scale(1.02); }
+        .btn-pay { background: #fff; color: #000; font-size: 0.85rem; }
+        .btn-pay:hover { background: #e0e0e0; }
 
         footer {
             background: #000;
-            padding: 50px 20px;
+            padding: 60px 20px;
             text-align: center;
             border-top: 1px solid #222;
-            margin-top: 80px;
+            margin-top: 100px;
         }
     </style>
 </head>
 <body>
 
     <header class="hero">
-        <p style="color: var(--blue); letter-spacing: 4px; font-weight: bold; margin-bottom: 10px;">SOLUÇÕES DE ENGENHARIA</p>
+        <p style="color: var(--blue); letter-spacing: 5px; font-weight: bold; margin-bottom: 15px; font-size: 0.9rem;">ENGENHARIA DE ELITE</p>
         <h1>BULACHA <span style="color: #fff;">DIGITAL</span></h1>
-        <p style="max-width: 700px; margin-top: 20px; font-size: 1.2rem; color: #ccc;">
-            Hub de Elite: Sistemas Operativos, Redes e Suporte Académico Especializado.
+        <p style="max-width: 800px; margin-top: 25px; font-size: 1.3rem; color: #eee; line-height: 1.6;">
+            Sistemas Operativos, Infraestrutura de Redes LAN/WAN e Suporte Académico Especializado.
         </p>
     </header>
 
     <div class="container">
         <div class="grid">
             <div class="card">
-                <i data-lucide="monitor" class="icon" size="44"></i>
+                <i data-lucide="monitor-dot" class="icon" size="48"></i>
                 <h3>Sistemas Operativos</h3>
-                <p>Instalação profissional de Windows, Linux e macOS.</p>
-                <div class="price">Desde 25.000 Kz</div>
+                <p>Instalação e reparação crítica de Windows, Linux e macOS com otimização de performance.</p>
+                <div class="price">25.000 Kz</div>
                 <div class="btn-box">
-                    <button class="btn-zap" onclick="zap('Sistemas Operativos')">Contratar</button>
-                    <button class="btn-pdf" onclick="abrirPg('Sistemas Operativos', 25000)">Gerar Recibo</button>
+                    <button class="btn-zap" onclick="zap('Sistemas Operativos')">Agendar Agora</button>
+                    <button class="btn-pay" onclick="gerarSinal('Sistemas Operativos', 25000)">Pagar Sinal (50%)</button>
                 </div>
             </div>
 
             <div class="card">
-                <i data-lucide="network" class="icon" size="44"></i>
-                <h3>Redes de Computadores</h3>
-                <p>Implementação de Redes LAN, MAN e WAN de alta performance.</p>
-                <div class="price">Base (LAN): 2.000.000 Kz</div>
+                <i data-lucide="server-cog" class="icon" size="48"></i>
+                <h3>Engenharia de Redes</h3>
+                <p>Projetos profissionais de Redes Locais e Remotas. Segurança e estabilidade de dados.</p>
+                <div class="price">Base: 2.000.000 Kz</div>
                 <div class="btn-box">
-                    <button class="btn-zap" onclick="zap('Redes')">Orçamento</button>
+                    <button class="btn-zap" onclick="zap('Redes')">Solicitar Orçamento</button>
+                    <button class="btn-pay" onclick="gerarSinal('Projeto de Redes (LAN)', 2000000)">Pagar Sinal (50%)</button>
                 </div>
             </div>
 
             <div class="card">
-                <i data-lucide="graduation-cap" class="icon" size="44"></i>
+                <i data-lucide="graduation-cap" class="icon" size="48"></i>
                 <h3>Apoio Académico</h3>
-                <p>Consultoria acadêmica completa do Ensino Primário ao Superior.</p>
-                <div class="price">Orçamento Personalizado</div>
+                <p>Consultoria especializada para todos os níveis, do Ensino Primário ao Ensino Superior.</p>
+                <div class="price">Sob Consulta</div>
                 <div class="btn-box">
-                    <button class="btn-zap" onclick="zap('Apoio Académico')">Solicitar</button>
+                    <button class="btn-zap" onclick="zap('Apoio Académico')">Falar com Consultor</button>
                 </div>
             </div>
-        </div>
-
-        <div class="academic-highlight">
-            <h3 style="color: var(--gold); margin-bottom: 10px;">Excelência Educacional</h3>
-            <p>Do Primário ao Superior, a Bulacha Digital é o seu parceiro estratégico.</p>
         </div>
     </div>
 
     <footer>
-        <div style="color: var(--blue); font-weight: bold; letter-spacing: 2px;">BULACHA DIGITAL</div>
-        <div style="color: #fff; font-size: 1.2rem; font-weight: bold; margin-top: 10px;">Maximiliano Sebastião B. Soma</div>
-        <div style="color: var(--gold); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px;">C.E.O. & Diretor Técnico</div>
-        <p style="font-size: 0.7rem; color: #444; margin-top: 30px;">Luanda, Angola &copy; 2026</p>
+        <div style="color: var(--blue); font-weight: 900; letter-spacing: 3px; font-size: 1.4rem;">BULACHA DIGITAL</div>
+        <div style="color: #fff; font-size: 1.4rem; font-weight: bold; margin-top: 15px;">Maximiliano Sebastião B. Soma</div>
+        <div style="color: var(--gold); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 4px; margin-top: 5px;">C.E.O. & Diretor Técnico</div>
+        <p style="font-size: 0.8rem; color: #555; margin-top: 40px;">Luanda, Angola &copy; 2026 | Tecnologia com Rigor Científico</p>
     </footer>
 
     <script>
-        // Inicialização dos Ícones
         lucide.createIcons();
 
-        // Função do WhatsApp
         function zap(item) {
             const numero = "244955843093";
-            const msg = encodeURIComponent("Olá Bulacha Digital, desejo suporte em: " + item);
+            const msg = encodeURIComponent("Olá Bulacha Digital! Desejo agendar suporte para: " + item);
             window.open("https://wa.me/" + numero + "?text=" + msg, "_blank");
         }
 
-        // Função do Recibo PDF
-        function abrirPg(servico, valor) {
+        function gerarSinal(servico, total) {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
+            const sinal = total * 0.5;
             
-            doc.setFillColor(5, 5, 5);
-            doc.rect(0, 0, 210, 45, 'F');
+            // Cabeçalho Profissional
+            doc.setFillColor(3, 3, 3);
+            doc.rect(0, 0, 210, 50, 'F');
             doc.setTextColor(0, 210, 255);
-            doc.setFontSize(22);
-            doc.text("BULACHA DIGITAL", 20, 30);
+            doc.setFontSize(26);
+            doc.setFont("helvetica", "bold");
+            doc.text("BULACHA DIGITAL", 20, 32);
             
+            // Corpo da Fatura
+            doc.setTextColor(0, 0, 0);
+            doc.setFontSize(14);
+            doc.text("FATURA PROFORMA - ADIANTAMENTO DE 50%", 20, 65);
+            
+            doc.setFontSize(11);
+            doc.setFont("helvetica", "normal");
+            doc.text("Serviço: " + servico, 20, 85);
+            doc.text("Valor Total: " + total.toLocaleString() + " Kz", 20, 93);
+            
+            // Destaque do Sinal
+            doc.setFillColor(245, 245, 245);
+            doc.rect(18, 103, 174, 15, 'F');
+            doc.setFont("helvetica", "bold");
+            doc.setTextColor(200, 0, 0);
+            doc.setFontSize(13);
+            doc.text("VALOR DO SINAL A PAGAR (50%): " + sinal.toLocaleString() + " Kz", 22, 113);
+            
+            // Coordenadas
             doc.setTextColor(0, 0, 0);
             doc.setFontSize(12);
-            doc.text("Serviço: " + servico, 20, 70);
-            doc.text("Valor Base: " + valor.toLocaleString() + " Kz", 20, 80);
-            doc.text("IBAN: AO06.0055.0000.3227.0935.1016.8", 20, 100);
-            doc.text("C.E.O. Maximiliano Soma", 20, 110);
+            doc.text("DADOS BANCÁRIOS PARA TRANSFERÊNCIA:", 20, 135);
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(11);
+            doc.text("IBAN: AO06.0055.0000.3227.0935.1016.8", 20, 145);
+            doc.text("Beneficiário: Maximiliano Sebastião B. Soma", 20, 153);
+            doc.text("Cargo: C.E.O. Bulacha Digital", 20, 161);
             
-            doc.save("Recibo_BulachaDigital.pdf");
+            // Termos
+            doc.setFontSize(9);
+            doc.setTextColor(100, 100, 100);
+            doc.text("CONDIÇÃO: O serviço será iniciado imediatamente após a recepção do sinal.", 20, 185);
+            doc.text("Data de Emissão: " + new Date().toLocaleDateString() + " | Luanda, Angola", 20, 192);
+            
+            doc.save("Fatura_Sinal_50_BulachaDigital.pdf");
+            alert("Fatura de Sinal (50%) gerada! Envie o comprovativo pelo WhatsApp.");
         }
     </script>
 </body>
