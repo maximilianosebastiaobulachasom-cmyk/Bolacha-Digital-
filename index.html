@@ -3,25 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bulacha Digital | Engenharia de Sistemas & Redes</title>
-    
+    <title>Bulacha Digital | Engenharia de Elite</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    
     <style>
         :root { --blue: #00d2ff; --gold: #ffca28; --dark: #050505; --card: #111; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { background: var(--dark); color: #fff; overflow-x: hidden; }
 
-        /* HEADER COMERCIAL / BANNER */
         .hero {
             height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
-                        url('1777913563081.png'); /* Caminho da sua imagem no GitHub */
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('1777913563081.png');
             background-size: cover;
             background-position: center;
             text-align: center;
@@ -40,9 +36,8 @@
         @keyframes glow { from { opacity: 0.8; } to { opacity: 1; text-shadow: 0 0 40px var(--blue); } }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
-        
-        /* GRID DE SERVIÇOS */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
         .card { 
             background: var(--card); 
             padding: 40px; 
@@ -52,24 +47,22 @@
             display: flex;
             flex-direction: column;
         }
-        .card:hover { border-color: var(--blue); transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0,210,255,0.1); }
+        .card:hover { border-color: var(--blue); transform: translateY(-10px); }
         
         .icon { color: var(--blue); margin-bottom: 20px; }
-        .card h3 { font-size: 1.6rem; margin-bottom: 15px; color: #fff; }
+        .card h3 { font-size: 1.6rem; margin-bottom: 15px; }
         .card p { color: #aaa; font-size: 0.95rem; flex-grow: 1; margin-bottom: 20px; }
         
         .price { font-size: 1.5rem; color: var(--gold); margin-bottom: 25px; font-weight: 800; border-top: 1px solid #222; padding-top: 15px; }
         
-        /* BOTÕES */
         .btn-box { display: flex; flex-direction: column; gap: 10px; }
         button { 
             width: 100%; padding: 15px; border-radius: 8px; border: none; 
-            font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;
+            font-weight: bold; cursor: pointer; text-transform: uppercase;
         }
         .btn-zap { background: #25d366; color: white; }
         .btn-pdf { background: #fff; color: #000; }
 
-        /* DESTAQUE ACADÉMICO */
         .academic-highlight {
             background: #111;
             padding: 30px;
@@ -79,7 +72,6 @@
             border-left: 6px solid var(--gold);
         }
 
-        /* RODAPÉ DO C.E.O. */
         footer {
             background: #000;
             padding: 50px 20px;
@@ -87,8 +79,6 @@
             border-top: 1px solid #222;
             margin-top: 80px;
         }
-        .ceo-name { color: #fff; font-size: 1.2rem; font-weight: bold; margin-top: 10px; }
-        .ceo-title { color: var(--gold); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px; }
     </style>
 </head>
 <body>
@@ -97,7 +87,7 @@
         <p style="color: var(--blue); letter-spacing: 4px; font-weight: bold; margin-bottom: 10px;">SOLUÇÕES DE ENGENHARIA</p>
         <h1>BULACHA <span style="color: #fff;">DIGITAL</span></h1>
         <p style="max-width: 700px; margin-top: 20px; font-size: 1.2rem; color: #ccc;">
-            Hub de Elite: Sistemas Operativos, Infraestrutura de Redes e Suporte Académico Especializado.
+            Hub de Elite: Sistemas Operativos, Redes e Suporte Académico Especializado.
         </p>
     </header>
 
@@ -106,99 +96,78 @@
             <div class="card">
                 <i data-lucide="monitor" class="icon" size="44"></i>
                 <h3>Sistemas Operativos</h3>
-                <p>Instalação, configuração e administração avançada de Windows, Linux e macOS para empresas e particulares.</p>
+                <p>Instalação profissional de Windows, Linux e macOS.</p>
                 <div class="price">Desde 25.000 Kz</div>
                 <div class="btn-box">
-                    <button class="btn-zap" onclick="zap('Instalação de Sistemas Operativos')">Contratar via WhatsApp</button>
-                    <button class="btn-pdf" onclick="abrirPg('Sistemas Operativos', 25000)">Gerar Recibo PDF</button>
+                    <button class="btn-zap" onclick="zap('Sistemas Operativos')">Contratar</button>
+                    <button class="btn-pdf" onclick="abrirPg('Sistemas Operativos', 25000)">Gerar Recibo</button>
                 </div>
             </div>
 
             <div class="card">
                 <i data-lucide="network" class="icon" size="44"></i>
                 <h3>Redes de Computadores</h3>
-                <p>Implementação de Redes LAN, MAN e WAN. Projetos escaláveis para alta performance e segurança de dados.</p>
+                <p>Implementação de Redes LAN, MAN e WAN de alta performance.</p>
                 <div class="price">Base (LAN): 2.000.000 Kz</div>
                 <div class="btn-box">
-                    <button class="btn-zap" onclick="zap('Infraestrutura de Redes')">Solicitar Orçamento</button>
+                    <button class="btn-zap" onclick="zap('Redes')">Orçamento</button>
                 </div>
             </div>
 
             <div class="card">
                 <i data-lucide="graduation-cap" class="icon" size="44"></i>
                 <h3>Apoio Académico</h3>
-                <p>Consultoria e elaboração de trabalhos escolares e científicos com rigor técnico absoluto.</p>
-                <div class="price">Primário ao Superior</div>
+                <p>Consultoria acadêmica completa do Ensino Primário ao Superior.</p>
+                <div class="price">Orçamento Personalizado</div>
                 <div class="btn-box">
-                    <button class="btn-zap" onclick="zap('Suporte Académico (Todos os Níveis)')">Enviar Pedido</button>
+                    <button class="btn-zap" onclick="zap('Apoio Académico')">Solicitar</button>
                 </div>
             </div>
         </div>
 
         <div class="academic-highlight">
             <h3 style="color: var(--gold); margin-bottom: 10px;">Excelência Educacional</h3>
-            <p>Garantimos prontidão e qualidade em todos os níveis de ensino. Do Ensino Primário ao Ensino Superior, a Bulacha Digital é o seu parceiro estratégico.</p>
+            <p>Do Primário ao Superior, a Bulacha Digital é o seu parceiro estratégico.</p>
         </div>
     </div>
 
     <footer>
-        <p style="color: var(--blue); font-weight: bold; letter-spacing: 2px;">BULACHA DIGITAL</p>
-        <div class="ceo-name">Maximiliano Sebastião B. Soma</div>
-        <div class="ceo-title">C.E.O. & Diretor Técnico</div>
-        <p style="font-size: 0.7rem; color: #444; margin-top: 30px;">Luanda, Angola | Todos os direitos reservados &copy; 2026</p>
+        <div style="color: var(--blue); font-weight: bold; letter-spacing: 2px;">BULACHA DIGITAL</div>
+        <div style="color: #fff; font-size: 1.2rem; font-weight: bold; margin-top: 10px;">Maximiliano Sebastião B. Soma</div>
+        <div style="color: var(--gold); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px;">C.E.O. & Diretor Técnico</div>
+        <p style="font-size: 0.7rem; color: #444; margin-top: 30px;">Luanda, Angola &copy; 2026</p>
     </footer>
 
     <script>
-        // Iniciar Ícones Lucide
+        // Inicialização dos Ícones
         lucide.createIcons();
 
-        // Função WhatsApp
+        // Função do WhatsApp
         function zap(item) {
             const numero = "244955843093";
-            const msg = encodeURIComponent(`Olá Bulacha Digital, desejo suporte profissional em: ${item}`);
-            window.open(`https://wa.me/${numero}?text=${msg}`, '_blank');
+            const msg = encodeURIComponent("Olá Bulacha Digital, desejo suporte em: " + item);
+            window.open("https://wa.me/" + numero + "?text=" + msg, "_blank");
         }
 
-        // Função de Recibo PDF com IBAN e Assinatura do C.E.O.
+        // Função do Recibo PDF
         function abrirPg(servico, valor) {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             
-            // Cabeçalho do Recibo
             doc.setFillColor(5, 5, 5);
             doc.rect(0, 0, 210, 45, 'F');
             doc.setTextColor(0, 210, 255);
-            doc.setFontSize(24);
+            doc.setFontSize(22);
             doc.text("BULACHA DIGITAL", 20, 30);
             
             doc.setTextColor(0, 0, 0);
-            doc.setFontSize(10);
-            doc.text("RECIBO DE SOLICITAÇÃO DE SERVIÇO", 20, 55);
-            
             doc.setFontSize(12);
-            doc.text(`Serviço: ${servico}`, 20, 75);
-            doc.text(`Valor Base: ${valor.toLocaleString()} Kz`, 20, 85);
-            doc.text(`Data de Emissão: ${new Date().toLocaleDateString()}`, 20, 95);
+            doc.text("Serviço: " + servico, 20, 70);
+            doc.text("Valor Base: " + valor.toLocaleString() + " Kz", 20, 80);
+            doc.text("IBAN: AO06.0055.0000.3227.0935.1016.8", 20, 100);
+            doc.text("C.E.O. Maximiliano Soma", 20, 110);
             
-            // Linha Divisória
-            doc.setDrawColor(200, 200, 200);
-            doc.line(20, 105, 190, 105);
-            
-            // Dados Bancários Reais
-            doc.setFont("helvetica", "bold");
-            doc.text("DADOS PARA PAGAMENTO (IBAN):", 20, 115);
-            doc.setFont("helvetica", "normal");
-            doc.text("IBAN: AO06.0055.0000.3227.0935.1016.8", 20, 125);
-            doc.text("Beneficiário: Maximiliano Sebastião B. Soma", 20, 133);
-            doc.text("Cargo: C.E.O. Bulacha Digital", 20, 141);
-            
-            doc.setFontSize(9);
-            doc.setTextColor(120, 120, 120);
-            doc.text("Nota: Envie o comprovativo de transferência para o WhatsApp oficial", 20, 160);
-            doc.text("para início imediato do serviço. (+244 955 843 093)", 20, 165);
-            
-            doc.save(`Recibo_BulachaDigital_CEO.pdf`);
-            alert("Recibo gerado com sucesso! Verifique a sua pasta de transferências.");
+            doc.save("Recibo_BulachaDigital.pdf");
         }
     </script>
 </body>
