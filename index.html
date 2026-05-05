@@ -135,21 +135,39 @@
             window.open(`https://wa.me/${numero}?text=Olá Bulacha Digital, desejo suporte em: ${item}`, '_blank');
         }
 
-        function abrirPg(servico, valor) {
+                function abrirPg(servico, valor) {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
+            
+            // Design do Recibo Profissional
             doc.setFillColor(5, 5, 5);
             doc.rect(0, 0, 210, 40, 'F');
             doc.setTextColor(0, 210, 255);
             doc.setFontSize(22);
             doc.text("BULACHA DIGITAL", 20, 28);
+            
             doc.setTextColor(0, 0, 0);
             doc.setFontSize(12);
             doc.text(`Serviço: ${servico}`, 20, 60);
             doc.text(`Valor Base: ${valor.toLocaleString()} Kz`, 20, 70);
             doc.text(`Data: ${new Date().toLocaleDateString()}`, 20, 80);
-            doc.text("IBAN: AO06.0000.0000.0000.0000.0 (Substitua no código)", 20, 100);
-            doc.save(`Recibo_BulachaDigital.pdf`);
+            
+            // Secção de Pagamento com o seu IBAN Real
+            doc.setFont("helvetica", "bold");
+            doc.text("DADOS PARA TRANSFERÊNCIA:", 20, 100);
+            doc.setFont("helvetica", "normal");
+            doc.text("BANCO: (Inserir Nome do Banco)", 20, 110);
+            doc.text("IBAN: AO06.0055.0000.3227.0935.1016.8", 20, 120);
+            doc.text("BENEFICIÁRIO: Maximiliano Sebastião B. Soma", 20, 130);
+            
+            doc.setFontSize(10);
+            doc.setTextColor(100, 100, 100);
+            doc.text("Após o pagamento, envie o comprovativo para o WhatsApp oficial.", 20, 150);
+            
+            doc.save(`Recibo_BulachaDigital_${Date.now()}.pdf`);
+            alert("Recibo gerado com o seu IBAN! Verifique a pasta de downloads.");
+        }
+
         }
     </script>
 </body>
