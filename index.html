@@ -18,8 +18,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            /* Link da sua imagem atualizado */
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), 
                         url('1777913563081.png');
             background-size: cover;
             background-position: center;
@@ -56,7 +55,7 @@
         .card h3 { font-size: 1.6rem; margin-bottom: 15px; }
         .card p { color: #aaa; font-size: 0.95rem; flex-grow: 1; margin-bottom: 20px; }
         
-        .price { font-size: 1.6rem; color: var(--gold); margin-bottom: 25px; font-weight: 800; border-top: 1px solid #222; padding-top: 15px; }
+        .price { font-size: 1.5rem; color: var(--gold); margin-bottom: 25px; font-weight: 800; border-top: 1px solid #222; padding-top: 15px; }
         
         /* BOTÕES */
         .btn-box { display: flex; flex-direction: column; gap: 10px; }
@@ -104,8 +103,8 @@
             <div class="card">
                 <i data-lucide="network" class="icon" size="44"></i>
                 <h3>Redes LAN / MAN / WAN</h3>
-                <p>Montagem e administração de redes. O orçamento aumenta 120.000 Kz consoante a abrangência da infraestrutura.</p>
-                <div class="price">Base: 80.000 Kz</div>
+                <p>Montagem e administração de redes. O orçamento aumenta em 120.000 Kz consoante a abrangência da infraestrutura.</p>
+                <div class="price">Base (LAN): 2.000.000 Kz</div>
                 <div class="btn-box">
                     <button class="btn-zap" onclick="zap('Infraestrutura de Redes')">Orçamento Personalizado</button>
                 </div>
@@ -129,7 +128,6 @@
     </div>
 
     <script>
-        // Ativação dos ícones Lucide (Verificação Final)
         lucide.createIcons();
 
         function zap(item) {
@@ -140,23 +138,18 @@
         function abrirPg(servico, valor) {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
-            
-            // Design do Recibo
             doc.setFillColor(5, 5, 5);
             doc.rect(0, 0, 210, 40, 'F');
             doc.setTextColor(0, 210, 255);
             doc.setFontSize(22);
             doc.text("BULACHA DIGITAL", 20, 28);
-            
             doc.setTextColor(0, 0, 0);
             doc.setFontSize(12);
             doc.text(`Serviço: ${servico}`, 20, 60);
             doc.text(`Valor Base: ${valor.toLocaleString()} Kz`, 20, 70);
             doc.text(`Data: ${new Date().toLocaleDateString()}`, 20, 80);
-            doc.text("IBAN: AO06.0000.0000.0000.0000.0 (Substituir no código)", 20, 100);
-            
+            doc.text("IBAN: AO06.0000.0000.0000.0000.0 (Substitua no código)", 20, 100);
             doc.save(`Recibo_BulachaDigital.pdf`);
-            alert("Recibo gerado com sucesso! Envie o comprovativo de transferência via WhatsApp.");
         }
     </script>
 </body>
